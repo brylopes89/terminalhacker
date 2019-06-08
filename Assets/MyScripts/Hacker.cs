@@ -1,4 +1,4 @@
-﻿//using System;
+﻿ //using System;
 //using System.Collections;
 //using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +10,11 @@ public class Hacker : MonoBehaviour{
     string[] level2Passwords = { "prisoner", "handcuffs", "holster", "uniform", "arrest" };
 
     //game state
-    int level;
+    int level; //member variable, which is available everywhere
+
     enum Screen { MainMenu, Password, Win };//create a new type called "Screen". This is an enumerator (enum). Defines a list of possible states
-    Screen currentScreen;
+
+    Screen currentScreen; //declare a variable of this new type called currentScreen
 
     string password;
 
@@ -31,7 +33,7 @@ public class Hacker : MonoBehaviour{
 
     void ShowMainMenu()//this is a formal parameter 
     {
-        currentScreen = Screen.MainMenu;
+        currentScreen = Screen.MainMenu; //assigning the value of currentScreen to MainMenu
         Terminal.ClearScreen();
         Terminal.WriteLine("What would you like to hack into?");
         Terminal.WriteLine("Press 1 for the local library");
@@ -50,7 +52,7 @@ public class Hacker : MonoBehaviour{
 
         else if (currentScreen == Screen.MainMenu)
         {
-            RunMainMenu(input);
+            RunMainMenu(input); //extracted new function/method by highlight RunMainMenu(input), right click, quick fix, and selecting Extract Method
         }
 
         else if (currentScreen == Screen.Password)
@@ -83,7 +85,6 @@ public class Hacker : MonoBehaviour{
 
     void StartGame()
     {
-        int index;
         currentScreen = Screen.Password;
         Terminal.ClearScreen();
 
@@ -91,15 +92,13 @@ public class Hacker : MonoBehaviour{
         {
             case 1:
                 //int index1 = Random.Range(0, level1Passwords.Length);
-                index = Random.Range(0, level1Passwords.Length);
-                password = level1Passwords[index];
+                password = level1Passwords [Random.Range(0, level1Passwords.Length)];
                 break;
 
             case 2:
                 //int index2 = Random.Range(0, level2Passwords.Length);
-                index = Random.Range(0, level2Passwords.Length);
-                password = level2Passwords[index];
-                break;
+                password = level2Passwords [Random.Range(0, level2Passwords.Length)];
+                break;             
 
             default:
                 Debug.LogError("Invalid level number");
@@ -118,7 +117,7 @@ public class Hacker : MonoBehaviour{
 
         else
         {
-            Terminal.WriteLine("You suck dick! Try again sucka.");
+            Terminal.WriteLine("You suck! Try again sucka.");
         }
     }
 
