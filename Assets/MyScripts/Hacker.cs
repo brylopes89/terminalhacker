@@ -18,7 +18,6 @@ public class Hacker : MonoBehaviour{
 
     string password;
 
-
     // Use this for initialization
     void Start()
     {
@@ -41,8 +40,6 @@ public class Hacker : MonoBehaviour{
         Terminal.WriteLine("Enter your selection: ");
     }
 
-
-
     void OnUserInput(string input) //this decides how to handle the input, not actually do it. 
     {
         if (input == "menu")
@@ -60,7 +57,6 @@ public class Hacker : MonoBehaviour{
             CheckPassword(input);
         }
     }
-
 
     void RunMainMenu(string input)
     {
@@ -112,13 +108,42 @@ public class Hacker : MonoBehaviour{
     {
         if (input == password)
         {
-            Terminal.WriteLine("Well done!");
+            DisplayWinScreen();
         }
 
         else
         {
-            Terminal.WriteLine("You suck! Try again sucka.");
+            Terminal.WriteLine("You suck!");
         }
     }
 
+    void DisplayWinScreen()
+    {
+        currentScreen = Screen.Win;
+        Terminal.ClearScreen();
+        ShowLevelReward();
+    }
+
+    void ShowLevelReward()
+    {
+        switch (level)
+        {
+            case 1:
+                Terminal.WriteLine("Fuckin nerd!");
+                Terminal.WriteLine(@"
+     _________
+    /        //
+   / Book of//
+  / NERDS  //
+ /________//
+(________(/
+"
+                );
+                break;
+            case 2:
+                Terminal.WriteLine("Fuckin bird!");
+                break;
+        }
+        
+    }
 }
